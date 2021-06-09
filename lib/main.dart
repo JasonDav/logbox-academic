@@ -8,10 +8,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LogBox Academic',
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

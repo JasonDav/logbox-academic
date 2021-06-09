@@ -121,7 +121,7 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: 'Password',
                 labelStyle: _hintStyle,
                 suffixIcon: IconButton(
-                  icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                  icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                   onPressed: () => setState(() {
                     _obscurePassword = !_obscurePassword;
                   }),
@@ -159,7 +159,7 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {
                     print('Signing in');
                     if (_formKey.currentState!.validate()) {
-                      SecurityApi().authenticate(_usernameController.text, _passwordController.text)
+                      SecurityApi.authenticate(_usernameController.text, _passwordController.text)
                       .whenComplete(() => Navigator.of(context).pushNamed('/home'));
                     }
                   },

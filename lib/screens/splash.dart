@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logbox_academic/main.dart';
 import 'package:rive/rive.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class SplashScreen extends StatelessWidget {
       Future.delayed(const Duration(seconds: 3)),
       // todo load local cache 
       // todo determine network connectivity
-    ]).whenComplete(() => Navigator.of(context).pushReplacementNamed('/login'));
+    ]).whenComplete(() => MyApp.navigatorKey.currentState!.pushReplacementNamed('/login'));
 
 
     return Container(

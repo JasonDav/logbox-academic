@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'security.g.dart';
 
-
 @JsonSerializable()
 class JWTToken {
 
