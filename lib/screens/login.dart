@@ -10,7 +10,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextStyle _titleStyle = TextStyle(color: Colors.white, fontFamily: 'Roboto', fontSize: 24);
+  TextStyle _titleStyle =
+      TextStyle(color: Colors.white, fontFamily: 'Roboto', fontSize: 24);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
                 child: Column(
                   children: [
                     Padding(
@@ -35,7 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           Expanded(
                             child: GestureDetector(
                               behavior: HitTestBehavior.translucent,
-                              onTap: () => context.staticRead<LoginState>().clickSecretButton(2),
+                              onTap: () => context
+                                  .staticRead<LoginState>()
+                                  .clickSecretButton(2),
                               child: Container(
                                 height: 150,
                               ),
@@ -46,14 +50,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 150,
                           ),
                           Expanded(
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.translucent,
-                              onTap: () => context.staticRead<LoginState>().clickSecretButton(1),
-                              child: Container(
-                                height: 150,
-                              ),
-                            )
-                          ),
+                              child: GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () => context
+                                .staticRead<LoginState>()
+                                .clickSecretButton(1),
+                            child: Container(
+                              height: 150,
+                            ),
+                          )),
                         ],
                       ),
                     ),
@@ -94,8 +99,10 @@ class _LoginFormState extends State<LoginForm> {
   final TextStyle _hintStyle = TextStyle(color: Colors.grey);
   final TextStyle _loginStyle = TextStyle(color: Colors.white);
 
-  final TextEditingController _usernameController = TextEditingController(text: 'paed@train.co.za');
-  final TextEditingController _passwordController = TextEditingController(text: 'LogBoxMaster');
+  final TextEditingController _usernameController =
+      TextEditingController(text: 'paed@train.co.za');
+  final TextEditingController _passwordController =
+      TextEditingController(text: 'LogBoxMaster');
 
   bool _obscurePassword = true;
   bool _secretActive = true;
@@ -111,7 +118,8 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           TextFormField(
             validator: Validators.username,
-            decoration: InputDecoration(labelText: 'Username', labelStyle: _hintStyle),
+            decoration:
+                InputDecoration(labelText: 'Username', labelStyle: _hintStyle),
             controller: _usernameController,
           ),
           TextFormField(
@@ -121,7 +129,9 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: 'Password',
                 labelStyle: _hintStyle,
                 suffixIcon: IconButton(
-                  icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(_obscurePassword
+                      ? Icons.visibility
+                      : Icons.visibility_off),
                   onPressed: () => setState(() {
                     _obscurePassword = !_obscurePassword;
                   }),
@@ -134,10 +144,12 @@ class _LoginFormState extends State<LoginForm> {
               Expanded(
                 child: GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  child: state.isDevMode ? Text(
-                    'DEV',
-                    textAlign: TextAlign.center,
-                  ) : Container(),
+                  child: state.isDevMode
+                      ? Text(
+                          'DEV',
+                          textAlign: TextAlign.center,
+                        )
+                      : Container(),
                   onTap: () => state.clickSecretButton(0),
                 ),
               ),
@@ -145,8 +157,10 @@ class _LoginFormState extends State<LoginForm> {
                 flex: 2,
                 child: TextButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF3D4554)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xFF3D4554)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ))),
                   child: Container(
@@ -159,8 +173,11 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {
                     print('Signing in');
                     if (_formKey.currentState!.validate()) {
-                      SecurityApi.authenticate(_usernameController.text, _passwordController.text)
-                      .whenComplete(() => Navigator.of(context).pushNamed('/home'));
+                      SecurityApi.authenticate(_usernameController.text,
+                              _passwordController.text)
+                          .whenComplete(() => SecurityApi.fetchUser())
+                          .whenComplete(
+                              () => Navigator.of(context).pushNamed('/home'));
                     }
                   },
                 ),
@@ -193,7 +210,7 @@ class LoginState {
   int lastClicked = -1;
 
   void clickSecretButton(int button) {
-    if (button < 4 && button == lastClicked+1) {
+    if (button < 4 && button == lastClicked + 1) {
       lastClicked++;
       print('Secret button $button clicked!');
 
