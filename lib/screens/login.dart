@@ -97,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _usernameController = TextEditingController(text: 'paed@train.co.za');
   final TextEditingController _passwordController = TextEditingController(text: 'LogBoxMaster');
 
-  bool _obscurePassword = false;
+  bool _obscurePassword = true;
   bool _secretActive = true;
 
   final _formKey = GlobalKey<FormState>();
