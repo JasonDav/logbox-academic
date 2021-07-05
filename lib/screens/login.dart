@@ -100,9 +100,9 @@ class _LoginFormState extends State<LoginForm> {
   final TextStyle _loginStyle = TextStyle(color: Colors.white);
 
   final TextEditingController _usernameController =
-      TextEditingController(text: 'paed@train.co.za');
+      TextEditingController(text: '');
   final TextEditingController _passwordController =
-      TextEditingController(text: 'LogBoxMaster');
+      TextEditingController(text: '');
 
   bool _obscurePassword = true;
   bool _secretActive = true;
@@ -117,12 +117,14 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           TextFormField(
+            key: Key('loginUserField'),
             validator: Validators.username,
             decoration:
                 InputDecoration(labelText: 'Username', labelStyle: _hintStyle),
             controller: _usernameController,
           ),
           TextFormField(
+            key: Key('loginPassField'),
             controller: _passwordController,
             validator: Validators.password,
             decoration: InputDecoration(
@@ -156,6 +158,7 @@ class _LoginFormState extends State<LoginForm> {
               Expanded(
                 flex: 2,
                 child: TextButton(
+                  key: Key('loginSignInButton'),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
                           const Color(0xFF3D4554)),

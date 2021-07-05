@@ -10,7 +10,11 @@ class HomeScreen extends StatelessWidget {
     var lastname = RootState().user.surname;
     return Scaffold(
       body: Container(
-        child: Center(child: Text("$firstname $lastname")),
+        child: Center(
+            child: Text(
+          "$firstname $lastname",
+          key: Key('homeUserNameText'),
+        )),
       ),
     );
   }
